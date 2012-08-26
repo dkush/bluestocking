@@ -3,7 +3,7 @@ import parse
 import random
 import unittest
 import nltk
-from parse import Chunkerator, ClauseChunkerator
+from parse import Chunkerator
 
 class TestParserMethods(unittest.TestCase):
     parser = None
@@ -107,19 +107,6 @@ class TestChunkerator(unittest.TestCase):
        textChunk = textChunk.split()
        outsent = c.chunk_sent(textChunk)
        self.assertTrue('dogs' in outsent)
-
-   def test_clause_chunker(self):
-        rules = """
-               NP: {<DT>?<JJ>*<NN.*>}
-               NP: {<PRP>}
-           """
-        c = Chunkerator(rules,True)
-        clauses = ClauseChunkerator(c)
-        textChunk = 'Men fried potatoes and women fried onions.'
-        outsent = clauses.chunk_sent(textChunk.split())
-        self.assertTrue(len(outsent)==3)
-        self.assertTrue('women_fried_onions.' in outsent)
-        
         
 if __name__ == '__main__':
     unittest.main()
