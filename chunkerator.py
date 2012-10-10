@@ -44,7 +44,7 @@ class Chunkerator:
             if tree[ii][0] in neg_words:
                 for jj in range(ii+1,len(tree)):
                     if type(tree[jj][0]) != types.TupleType:
-                        if tree[jj][1][1]!="C":
+                        if len(tree[jj])> 0 and len(tree[jj][1])> 0 and tree[jj][1][1]!="C":
                             blob = 'neg_%s' % str(tree[jj][0])
                             tree[jj] = (blob,tree[jj][1])
                         else:
